@@ -3,49 +3,27 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { appColors } from '../../theme/color';
 import { TextBlock, TextBold, TextUnderline, TextalignCenter, TextalignLeft, TextalignRight } from 'iconsax-react-native';
 
-const EditButton = () => {
+const EditButtons = ({ onChangeStyle }) => {
 
-  const btnArray = [
-    {
-      id: 1,
-      name: "bold",
-      icon: <TextBold size="30" color={appColors.Secondary} />
-    },
-    {
-      id: 2,
-      name: "italic",
-      icon: <TextBlock size="32" color={appColors.Secondary} />
-    },
-    {
-      id: 3,
-      name: "underline",
-      icon: <TextUnderline size="32" color={appColors.Secondary} />
-    },
-    {
-      id: 4,
-      name: "strikethrough",
-      icon: <TextalignCenter size="32" color={appColors.Secondary} />
-    },
-    {
-      id: 5,
-      name: "color",
-      icon: <TextalignLeft size="32" color={appColors.Secondary}/>
-    },
-    {
-      id: 6,
-      name: "color",
-      icon: <TextalignRight size="32" color={appColors.Secondary}/> 
-    }
-
-  ]
+ const btnArray = [
+  { id: 1, value: "bold", icon: <TextBold size="30" color={appColors.Secondary} /> },
+  { id: 2, value: "italic", icon: <TextBlock size="32" color={appColors.Secondary} /> },
+  { id: 3, value: "textUnderline", icon: <TextUnderline size="32" color={appColors.Secondary} /> },
+  { id: 4, value: "left", icon: <TextalignLeft size="32" color={appColors.Secondary} /> },
+  { id: 5, value: "center", icon: <TextalignCenter size="32" color={appColors.Secondary} /> },
+  { id: 6, value: "right", icon: <TextalignRight size="32" color={appColors.Secondary} /> }
+];
 
 
   return (
     <View style={styles.container}>
       {
         btnArray.map((item, i) => (
-          <TouchableOpacity key={item.id}>
+          <TouchableOpacity
+            onPress={() => onChangeStyle(item.value)}
+            key={item.id}>
             {item.icon}
+
           </TouchableOpacity>
         ))
       }
@@ -64,4 +42,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default EditButton;
+export default EditButtons;

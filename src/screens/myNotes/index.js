@@ -63,12 +63,10 @@ const MyNotes = ({ navigation }) => {
   }
 
   const addNote = (item) => {
-
     if (item) {
-      setNotes([...notes, item])
+      setNotes((prevNotes) => [...prevNotes, item]); 
     }
-
-  }
+  };
 
   const deleteNote = (id) => {
 
@@ -78,24 +76,14 @@ const MyNotes = ({ navigation }) => {
 
   }
 
-  const updateNote = (id, item) => {
-
-    const updatedItem = notes.map((note) => note.id === id ?
-      { ...note, title: "new title" } : note)
-
-    setNotes(updatedItem)
-
-  }
-
-  useEffect(()=>{
-
-    setTimeout(()=>{
-
-      setNotes([...notes, Note2])
-    }, 4000)
-
-    
-  },[])
+  const updateNote = (id, updatedNote) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) =>
+        note.id === id ? { ...note, ...updatedNote } : note
+      )
+    );
+  };
+  
 
   return (
     <SafeAreaView style={screenStyle.container}>
@@ -111,11 +99,12 @@ const MyNotes = ({ navigation }) => {
              deleteNote={deleteNote}
              updateNote={updateNote}
              
+             
              />
           )}
         />
         <FloatActionButton
-           onPress={() => navigation.navigate(ADDNOTE, { title: "serhat" })} 
+           onPress={() => navigation.navigate(ADDNOTE, { addNote:addNote, note:notes})} 
          // onPress={() => addNote(Note2)}
         />
       </View>

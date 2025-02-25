@@ -7,12 +7,10 @@ import { NoteCardStyles } from '../../styles/myNotesStyles';
 import { useNavigation } from '@react-navigation/native';
 import MyNotes from '../../screens/myNotes';
 import NoteDetail from '../../screens/noteDetail';
-import { NOTEDETAIL } from '../../utils/routes';
+import { ADDNOTE, NOTEDETAIL } from '../../utils/routes';
 
 
 const NoteCard = ({ item, deleteNote, updateNote }) => {
-
-
 
     const navigation = useNavigation()
 
@@ -42,7 +40,7 @@ const NoteCard = ({ item, deleteNote, updateNote }) => {
 
             <TouchableOpacity style={NoteCardStyles.trushButtonContainer} >
                 <Edit
-                    onPress={() => updateNote(item.id, item)}
+                    onPress={() => navigation.navigate(ADDNOTE,{note:item, type:"update", updateNote:updateNote})}
                     size="24" variant='Bold' color={appColors.Primary} />
             </TouchableOpacity>
 
