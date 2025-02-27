@@ -29,9 +29,6 @@ Ensure you have the following installed:
 - **Android Studio** (For Android Emulator)
 - **Xcode** (For iOS Simulator)
 
-## License
-This project is licensed under the MIT License.
-
 ---
 
 
